@@ -86,3 +86,20 @@ const imagePaths: string[] = Array.from(
     { length: imageParticleCount },
     (_, i) => `/img/${i + 1}.jpg` // Asegúrate de que estas rutas coincidan con tus imágenes en /public/img/
 );
+
+📁 Estructura del Proyecto
+.
+├── public/
+│   └── img/          # Imágenes estáticas (hero.jpg, outro.jpg, 1.jpg, 2.jpg, ...)
+├── src/
+│   └── app/
+│       ├── components/
+│       │   └── ExplosionContainer.tsx # Componente principal de la animación
+│       ├── globals.css # Estilos globales
+│       ├── layout.tsx  # Layout raíz (incluye configuración de fuente)
+│       └── page.tsx    # Página principal donde se usa ExplosionContainer
+├── bun.lockb         # Lockfile de Bun
+├── package.json      # Dependencias y scripts
+├── tsconfig.json     # Configuración de TypeScript
+└── next.config.mjs   # Configuración de Next.js
+└── README.md         # Este archivo
