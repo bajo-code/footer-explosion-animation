@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Footer Particle Explosion Animation ✨
 
-## Getting Started
+Este proyecto es una demostración de una animación de explosión de partículas (imágenes) que se activa cuando el usuario se desplaza cerca del pie de página (footer) de una página web. Está construido con Next.js, React, TypeScript y utiliza Bun como runtime/gestor de paquetes principal.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Tecnologías Utilizadas
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+*   **Framework:** [Next.js](https://nextjs.org/) (App Router)
+*   **Lenguaje:** [TypeScript](https://www.typescriptlang.org/)
+*   **Librería UI:** [React](https://reactjs.org/)
+*   **Runtime/Gestor de Paquetes:** [Bun](https://bun.sh/) (También compatible con Node.js/npm/yarn)
+*   **Fuentes:** [next/font](https://nextjs.org/docs/basic-features/font-optimization) (usando Courier Prime de Google Fonts)
+*   **Animación:** CSS Transforms y `requestAnimationFrame` gestionado en React.
+*   **Estilos:** CSS Global (`globals.css`)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📋 Prerrequisitos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Para ejecutar este proyecto localmente, necesitarás tener instalado:
 
-## Learn More
+*   **Bun:** (Recomendado) [Instrucciones de instalación de Bun](https://bun.sh/docs/installation)
+*   *Alternativa:* [Node.js](https://nodejs.org/) (versión 18.x o superior) y un gestor de paquetes como npm o yarn.
+*   **Git:** Para clonar el repositorio.
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Cómo Empezar
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Sigue estos pasos para poner en marcha el proyecto en tu máquina local:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1.  **Clona el Repositorio:**
+    ```bash
+    git clone <URL_DE_TU_REPOSITORIO_AQUÍ>
+    cd <NOMBRE_DEL_DIRECTORIO_DEL_PROYECTO>
+    ```
 
-## Deploy on Vercel
+2.  **Instala las Dependencias:**
+    *   **Usando Bun (Recomendado):**
+        ```bash
+        bun install
+        ```
+    *   *Alternativa usando npm:*
+        ```bash
+        npm install
+        ```
+    *   *Alternativa usando yarn:*
+        ```bash
+        yarn install
+        ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3.  **Ejecuta el Servidor de Desarrollo:**
+    *   **Usando Bun:**
+        ```bash
+        bun run dev
+        ```
+    *   *Alternativa usando npm:*
+        ```bash
+        npm run dev
+        ```
+    *   *Alternativa usando yarn:*
+        ```bash
+        yarn dev
+        ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4.  **Abre tu Navegador:**
+    Visita [`http://localhost:3000`](http://localhost:3000) para ver la aplicación en funcionamiento.
+
+
+## ⚙️ Configuración de la Animación
+
+Puedes modificar el comportamiento de la explosión ajustando el objeto `config` y otras constantes dentro del archivo `./src/app/components/ExplosionContainer.tsx` (o la ruta donde lo tengas):
+
+```typescript
+// Dentro de ExplosionContainer.tsx
+
+const config: ExplosionConfig = {
+    gravity: 0.25,        // Aceleración hacia abajo
+    friction: 0.99,       // Resistencia (más cercano a 1 = menos resistencia)
+    imageSize: 150,       // Tamaño de las imágenes (en px)
+    horizontalForce: 20,  // Fuerza inicial horizontal (aleatoria +/-)
+    verticalForce: 15,    // Fuerza inicial vertical (hacia arriba)
+    rotationSpeed: 10,    // Velocidad de rotación inicial (aleatoria +/-)
+    resetDelay: 500,      // Tiempo (ms) antes de permitir otra explosión
+};
+
+const imageParticleCount = 15; // Número de imágenes a explotar
+
+const imagePaths: string[] = Array.from(
+    { length: imageParticleCount },
+    (_, i) => `/img/${i + 1}.jpg` // Asegúrate de que estas rutas coincidan con tus imágenes en /public/img/
+);
